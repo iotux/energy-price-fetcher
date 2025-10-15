@@ -1,0 +1,28 @@
+{
+  "name": "energy-price-fetcher",
+  "version": "0.1.0",
+  "description": "Lightweight utilities for fetching and normalising European day-ahead electricity prices",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "node examples/cli-fetch.js"
+  },
+  "keywords": [
+    "energy",
+    "prices",
+    "nordpool",
+    "entso-e",
+    "entsoe",
+    "electricity"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "date-fns": "^4.1.0",
+    "xml-js": "^1.6.11"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

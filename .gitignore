@@ -1,0 +1,10 @@
+#
+*.swp
+node_modules/
+.vscode/
+# Local configuration
+package-lock.json
+# Testing and temporary files
+tmp/*
+log/*
+
