@@ -1,6 +1,6 @@
 {
   "name": "energy-price-fetcher",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lightweight utilities for fetching and normalising European day-ahead electricity prices",
   "main": "src/index.js",
   "type": "commonjs",
