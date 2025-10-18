@@ -89,6 +89,7 @@ Hourly entries contain *only* spot prices; downstream applications can layer VAT
 ### Currency helpers
 
 - `createCurrencyRateProvider(options)` returns an async `(code) => rate` function and is exported for custom use. By default the fetcher shares a single provider hitting the ECB daily feed; pass `currencyFetcherOptions` or your own `getCurrencyRate` to customise caching behaviour.
+- `fetchCurrencies(options)` downloads and parses the ECB daily XML feed and returns the structured payload used by the rate provider (including `rates`, `date`, and metadata).
 
 ## Notes on data sources
 

@@ -100,6 +100,13 @@ async function defaultFetch(url) {
   return response.data;
 }
 
+async function fetchCurrencies(options = {}) {
+  const { currencyUrl = DEFAULT_CURRENCY_URL, fetcher = defaultFetch } =
+    options;
+  return fetchRates(currencyUrl, fetcher);
+}
+
 module.exports = {
   createCurrencyRateProvider,
+  fetchCurrencies,
 };

@@ -1,7 +1,11 @@
 const fetchDayAheadPrices = require("./priceFetcher");
-const { createCurrencyRateProvider } = require("./providers/ecbCurrencyProvider");
+const {
+  createCurrencyRateProvider,
+  fetchCurrencies,
+} = require("./providers/ecbCurrencyProvider");
 
 module.exports = {
   fetchDayAheadPrices,
   createCurrencyRateProvider,
+  fetchCurrencies,
 };
