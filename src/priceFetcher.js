@@ -2,7 +2,7 @@ const { format } = require("date-fns");
 const NordPoolClient = require("./providers/nordPoolClient");
 const EntsoeClient = require("./providers/entsoeClient");
 const { normalizeSeries } = require("./priceSeriesNormalizer");
-const { createCurrencyRateProvider } = require("./providers/ecbCurrencyProvider");
+const { createCurrencyRateProvider } = require("./providers/currencyRateProvider");
 
 let sharedCurrencyRateProvider = null;
 

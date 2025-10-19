@@ -50,8 +50,8 @@ Fetch day-ahead spot prices and return a normalised structure.
 | `prefer` | string | `"nordpool"` | Preferred source (`"nordpool"`, `"entsoe"`) |
 | `providers` | array | auto | Override the fallback order by passing an array of providers |
 | `entsoeToken` | string | `null` | Required to call the ENTSO-E API (if omitted, ENTSO-E is skipped) |
-| `getCurrencyRate` | function | `null` | Async function like `(currencyCode) => number` returning a conversion rate; if omitted and conversion is needed the built-in ECB provider kicks in |
-| `currencyFetcherOptions` | object | `{}` | Options for the built-in currency provider (e.g. `{ currencyUrl, disableCache }`) |
+| `getCurrencyRate` | function | `null` | Async function like `(currencyCode) => number` returning a conversion rate; if omitted and conversion is needed the built-in provider from `currency-rate-fetcher` kicks in (defaults to ECB data). |
+| `currencyFetcherOptions` | object | `{}` | Options for the built-in currency provider (forwarded to `currency-rate-fetcher`, e.g. `{ provider: "frc", baseCurrency: "EUR" }` or `{ provider: "oxr", providerOptions: { appId: process.env.OXR_TOKEN } }`). |
 | `baseUrls` | object | internal defaults | Override source URLs (`{ nordpool, entsoe }`) |
 
 ### Response shape
@@ -88,8 +88,8 @@ Hourly entries contain *only* spot prices; downstream applications can layer VAT
 
 ### Currency helpers
 
-- `createCurrencyRateProvider(options)` returns an async `(code) => rate` function and is exported for custom use. By default the fetcher shares a single provider hitting the ECB daily feed; pass `currencyFetcherOptions` or your own `getCurrencyRate` to customise caching behaviour.
-- `fetchCurrencies(options)` downloads and parses the ECB daily XML feed and returns the structured payload used by the rate provider (including `rates`, `date`, and metadata).
+- `createCurrencyRateProvider(options)` returns an async `(code) => rate` function and is exported for custom use. Internally it calls the published `currency-rate-fetcher` package (ECB by default, but you can switch providers through `options.provider` or pass the same `currencyFetcherOptions` used elsewhere).
+- `fetchCurrencies(provider, base, options)` and `fetchCurrency(provider, currency, base, options)` proxy the helpers from `currency-rate-fetcher` for convenience.
 
 ## Notes on data sources
 
