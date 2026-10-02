@@ -20,8 +20,8 @@ class EntsoeClient {
     return code;
   }
 
-  _buildUrl(periodStart, periodEnd) {
-    return `${this.baseUrl}?documentType=A44&securityToken=${this.token}&in_Domain=${this._resolveRegionCode()}&out_Domain=${this._resolveRegionCode()}&periodStart=${periodStart}&periodEnd=${periodEnd}`;
+  _buildUrl(token, periodStart, periodEnd) {
+    return `${this.baseUrl}?documentType=A44&securityToken=${token}&in_Domain=${this._resolveRegionCode()}&out_Domain=${this._resolveRegionCode()}&periodStart=${periodStart}&periodEnd=${periodEnd}`;
   }
 
   async fetch(date) {
@@ -31,7 +31,7 @@ class EntsoeClient {
 
     const periodStart = this._entsoeDateString(date, 0);
     const periodEnd = this._entsoeDateString(date, 1);
-    const url = this._buildUrl(periodStart, periodEnd);
+    const url = this._buildUrl(this.token, periodStart, periodEnd);
 
     const response = await axios.get(url, {
       headers: {
@@ -70,7 +70,7 @@ class EntsoeClient {
 
     return {
       provider: "ENTSO-E",
-      providerUrl: this._buildUrl("*****", "*****"),
+      providerUrl: this._buildUrl('**********', periodStart, periodEnd), // Hide the token
       resolution,
       points,
     };
